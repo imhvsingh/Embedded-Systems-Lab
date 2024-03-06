@@ -1,0 +1,128 @@
+C51 COMPILER V9.60.7.0   PRAC6                                                             03/06/2024 17:17:17 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE PRAC6
+OBJECT MODULE PLACED IN .\Objects\Prac6.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Prac6.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\Pra
+                    -c6.lst) TABS(2) OBJECT(.\Objects\Prac6.obj)
+
+line level    source
+
+   1          #include <reg51.h>
+   2          #define msec 1
+   3          unsigned int arr[10]={0x40,0xF9,0x24,0x30,0x19,0x12,0x02,0xF8,0x00,0x10};
+   4          sbit d4=P1^0;
+   5          sbit d3=P1^1;
+   6          sbit d2=P1^2;
+   7          sbit d1=P1^3;
+   8          sbit d0=P1^4;
+   9          sbit d= P1^5;
+  10          unsigned int v1,v2,v3,v4,v0,v5,v6;
+  11          void delay(unsigned int count)
+  12          {
+  13   1      unsigned int j,k;
+  14   1      for (j=0;j<=count;j++)
+  15   1      for (k=0;k<=50;k++);
+  16   1      }
+  17          void main()
+  18          {
+  19   1       v1=v2=v3=v4=v0=v5=v6=0;
+  20   1       while(1)
+  21   1      {   
+  22   2      {
+  23   3           v0=v0+1;
+  24   3        if(v0==130)
+  25   3        {
+  26   4        v0=0;
+  27   4        v1=v1+1;
+  28   4        }
+  29   3          P2=0xFF;
+  30   3        d = 1;
+  31   3        d3 = d2 = d4 = d0 = d1= 0;
+  32   3        P2 = arr[v1];
+  33   3        delay(msec);
+  34   3        
+  35   3          if(v1==10)
+  36   3        {
+  37   4        v1=0;
+  38   4        v2=v2+1;
+  39   4        }
+  40   3        P2=0xFF;
+  41   3        d0 = 1;
+  42   3        d4 = d3 = d1 =d=d2= 0;
+  43   3        P2 = arr[v2];
+  44   3        delay(msec);
+  45   3      
+  46   3          if(v2==6)
+  47   3        {
+  48   4        v2=0;
+  49   4        v3=v3+1;
+  50   4        }
+  51   3        P2=0xFF;
+  52   3        d1 = 1;
+  53   3        d2 = d4 = d3 =d=d0= 0;
+  54   3        P2 = arr[v3];
+C51 COMPILER V9.60.7.0   PRAC6                                                             03/06/2024 17:17:17 PAGE 2   
+
+  55   3        delay(msec);
+  56   3      
+  57   3          if(v3==10)
+  58   3        {
+  59   4        v3=0;
+  60   4        v4=v4+1;
+  61   4        }
+  62   3        P2=0xFF;
+  63   3        d2 = 1;
+  64   3        d3 = d4 = d1 =d=d0= 0;
+  65   3        P2 = arr[v4];
+  66   3        delay(msec);
+  67   3      
+  68   3        if(v4==6)
+  69   3        {
+  70   4        v4=0;
+  71   4        v5=v5+1;
+  72   4        }
+  73   3        P2=0xFF;
+  74   3        d3 = 1;
+  75   3        d0 = d2 = d1 =d=d4= 0;
+  76   3        P2 = arr[v5];
+  77   3        delay(msec);
+  78   3        
+  79   3        if(v5==10)
+  80   3        {
+  81   4        v5=0;
+  82   4        v6=v6+1;
+  83   4        }
+  84   3        P2=0xFF;
+  85   3        d4 = 1;
+  86   3        d3 = d2 = d1 =d=d0= 0;
+  87   3        P2 = arr[v6];
+  88   3        delay(msec);
+  89   3        if(v6==1&&v5==2)
+  90   3        {
+  91   4        v1=0;
+  92   4        v2=0;
+  93   4        v3=0;
+  94   4        v4=0;
+  95   4          v5=0;
+  96   4        v6=0;
+  97   4          }
+  98   3      delay(msec);
+  99   3      P2=0xFF;
+ 100   3      }
+ 101   2      }
+ 102   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    369    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     34    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
