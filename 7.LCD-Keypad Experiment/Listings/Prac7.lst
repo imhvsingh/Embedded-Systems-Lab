@@ -1,0 +1,186 @@
+C51 COMPILER V9.60.7.0   PRAC7                                                             03/13/2024 19:25:31 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE PRAC7
+OBJECT MODULE PLACED IN .\Objects\Prac7.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Prac7.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\Pra
+                    -c7.lst) TABS(2) OBJECT(.\Objects\Prac7.obj)
+
+line level    source
+
+   1          #include <REGX51.H>
+   2          #define keypad   P1
+   3          #define LCD_dat P2
+   4          sbit rs =P3^0;
+   5          sbit en =P3^1;
+   6           
+   7          
+   8          unsigned int LCD_Cur_pos;
+   9           
+  10          
+  11          void dely(unsigned int dly);
+  12          void lcd_cmd(unsigned char ch); 
+  13          void lcd_data(unsigned char ch);
+  14          void lcd_str(unsigned char *str);
+  15          char get_keypad_key(void);
+  16           
+  17          
+  18          void main(void)
+  19          {
+  20   1      char KeyVal =0;
+  21   1      lcd_cmd(0x38);
+  22   1      lcd_cmd(0x0C);
+  23   1       
+  24   1      
+  25   1            while(1)
+  26   1            {
+  27   2      if(LCD_Cur_pos < 16)
+  28   2      lcd_cmd(0x80+LCD_Cur_pos);
+  29   2      if(LCD_Cur_pos >= 16)
+  30   2      lcd_cmd(0xc0+LCD_Cur_pos-16);
+  31   2      if(LCD_Cur_pos >= 32)
+  32   2      {
+  33   3      lcd_cmd(0x01);
+  34   3      LCD_Cur_pos = 0;
+  35   3      }
+  36   2       
+  37   2      
+  38   2      KeyVal = get_keypad_key();
+  39   2       
+  40   2      
+  41   2      lcd_data(KeyVal);
+  42   2      dely(20);
+  43   2             }
+  44   1      }
+  45           
+  46          
+  47          char get_keypad_key(void)
+  48          {
+  49   1      char key_val =0;
+  50   1             keypad = 0xFE; //ROW1 =0
+  51   1                if(keypad == 0xee) // button 1
+  52   1      {
+  53   2                 key_val = '1';
+  54   2      LCD_Cur_pos++;
+C51 COMPILER V9.60.7.0   PRAC7                                                             03/13/2024 19:25:31 PAGE 2   
+
+  55   2      }
+  56   1                if(keypad == 0xde) // button 2
+  57   1      {
+  58   2                 key_val = '2';
+  59   2      LCD_Cur_pos++;
+  60   2      }
+  61   1      if(keypad == 0xbe) // button 3
+  62   1      {
+  63   2                 key_val = '3';
+  64   2      LCD_Cur_pos++;
+  65   2      }
+  66   1       
+  67   1      
+  68   1      keypad = 0xFD; //ROW2 =0
+  69   1      if(keypad == 0xED) // button 4
+  70   1      {
+  71   2      key_val = '4';
+  72   2      LCD_Cur_pos++;
+  73   2      }
+  74   1      if(keypad == 0xDD) // button 5
+  75   1      {
+  76   2      key_val = '5';
+  77   2      LCD_Cur_pos++;
+  78   2      }
+  79   1      if(keypad == 0xBD) // button 6
+  80   1      {
+  81   2      key_val = '6';
+  82   2      LCD_Cur_pos++;
+  83   2      }
+  84   1       
+  85   1      
+  86   1      keypad = 0xFB; //ROW3 =0
+  87   1      if(keypad == 0xEB) // button 7
+  88   1      {
+  89   2      key_val = '7';
+  90   2      LCD_Cur_pos++;
+  91   2      }
+  92   1      if(keypad == 0xDB) // button 8
+  93   1      {
+  94   2      key_val = '8';
+  95   2      LCD_Cur_pos++;
+  96   2      }
+  97   1      if(keypad == 0xBB) // button 9
+  98   1      {
+  99   2      key_val = '9';
+ 100   2      LCD_Cur_pos++;
+ 101   2      }
+ 102   1       
+ 103   1      
+ 104   1      keypad = 0xF7; //ROW3 =0
+ 105   1      if(keypad == 0xE7) // button *
+ 106   1      {
+ 107   2      key_val = '*';
+ 108   2      LCD_Cur_pos++;
+ 109   2      }
+ 110   1      if(keypad == 0xD7) // button 0
+ 111   1      {
+ 112   2      key_val = '0';
+ 113   2      LCD_Cur_pos++;
+ 114   2      }
+ 115   1      if(keypad == 0xB7) // button #
+ 116   1      {
+C51 COMPILER V9.60.7.0   PRAC7                                                             03/13/2024 19:25:31 PAGE 3   
+
+ 117   2      key_val = '#';
+ 118   2      LCD_Cur_pos++;
+ 119   2      }
+ 120   1      return key_val;
+ 121   1      }
+ 122           
+ 123          
+ 124           
+ 125          
+ 126          void lcd_str(unsigned char *str)
+ 127          {
+ 128   1      unsigned int loop =0;
+ 129   1      for(loop =0; str[loop]!= '\0'; loop++)
+ 130   1      {
+ 131   2      lcd_data(str[loop]);
+ 132   2      }
+ 133   1      }
+ 134          void lcd_data(unsigned char ch)
+ 135          {
+ 136   1      LCD_dat = ch;
+ 137   1      rs = 1;  // data
+ 138   1      en = 1;
+ 139   1      dely(10);
+ 140   1      en = 0;
+ 141   1      }
+ 142           
+ 143          
+ 144          void lcd_cmd(unsigned char ch)
+ 145          {
+ 146   1      LCD_dat = ch;
+ 147   1      rs = 0;  // cmd
+ 148   1      en = 1;
+ 149   1      dely(10);
+ 150   1      en = 0;
+ 151   1      }
+ 152          void dely(unsigned int dly)
+ 153          {
+ 154   1      unsigned int loop =0;
+ 155   1      unsigned int delay_gen =0;
+ 156   1      for(loop =0; loop < dly; loop++)
+ 157   1      for(delay_gen =0; delay_gen < 1000; delay_gen++); /* delay */
+ 158   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    389    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2       6
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

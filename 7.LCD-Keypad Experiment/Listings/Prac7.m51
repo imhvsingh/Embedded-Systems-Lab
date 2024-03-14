@@ -1,0 +1,263 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    03/13/2024  19:25:32  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\Prac7.obj TO .\Objects\Prac7 PRINT (.\Listings\Prac7.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\Prac7.obj (PRAC7)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\Prac7 (PRAC7)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0005H     UNIT         ?DT?_LCD_STR?PRAC7
+            DATA    000DH     0002H     UNIT         ?DT?PRAC7
+            DATA    000FH     0001H     UNIT         _DATA_GROUP_
+            IDATA   0010H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     00C3H     UNIT         ?PR?GET_KEYPAD_KEY?PRAC7
+            CODE    08C3H     0059H     UNIT         ?PR?MAIN?PRAC7
+            CODE    091CH     002FH     UNIT         ?PR?_LCD_STR?PRAC7
+            CODE    094BH     002DH     UNIT         ?C?LIB_CODE
+            CODE    0978H     0026H     UNIT         ?PR?_DELY?PRAC7
+            CODE    099EH     000CH     UNIT         ?C_C51STARTUP
+            CODE    09AAH     000AH     UNIT         ?PR?_LCD_DATA?PRAC7
+            CODE    09B4H     000AH     UNIT         ?PR?_LCD_CMD?PRAC7
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\Prac7 (PRAC7)
+
+
+SEGMENT                            DATA_GROUP 
+  +--> CALLED SEGMENT            START    LENGTH
+------------------------------------------------
+?C_C51STARTUP                    -----    -----
+  +--> ?PR?MAIN?PRAC7
+
+?PR?MAIN?PRAC7                   000FH    0001H
+  +--> ?PR?_LCD_CMD?PRAC7
+  +--> ?PR?GET_KEYPAD_KEY?PRAC7
+  +--> ?PR?_LCD_DATA?PRAC7
+  +--> ?PR?_DELY?PRAC7
+
+?PR?_LCD_CMD?PRAC7               -----    -----
+  +--> ?PR?_DELY?PRAC7
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  03/13/2024  19:25:32  PAGE 2
+
+
+?PR?_LCD_DATA?PRAC7              -----    -----
+  +--> ?PR?_DELY?PRAC7
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\Prac7 (PRAC7)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        PRAC7
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:000DH         PUBLIC        LCD_Cur_pos
+  C:08C3H         PUBLIC        main
+  C:097EH         PUBLIC        _dely
+  C:09AAH         PUBLIC        _lcd_data
+  C:09B4H         PUBLIC        _lcd_cmd
+  C:0800H         PUBLIC        get_keypad_key
+  B:00B0H.1       PUBLIC        en
+  B:00B0H.0       PUBLIC        rs
+  C:091CH         PUBLIC        _lcd_str
+  -------         PROC          MAIN
+  -------         DO            
+  D:000FH         SYMBOL        KeyVal
+  -------         ENDDO         
+  C:08C3H         LINE#         18
+  C:08C3H         LINE#         19
+  C:08C3H         LINE#         20
+  C:08C6H         LINE#         21
+  C:08CBH         LINE#         22
+  C:08D0H         LINE#         25
+  C:08D0H         LINE#         26
+  C:08D0H         LINE#         27
+  C:08DBH         LINE#         28
+  C:08E3H         LINE#         29
+  C:08EEH         LINE#         30
+  C:08F6H         LINE#         31
+  C:0901H         LINE#         32
+  C:0901H         LINE#         33
+  C:0906H         LINE#         34
+  C:090BH         LINE#         35
+  C:090BH         LINE#         38
+  C:0910H         LINE#         41
+  C:0913H         LINE#         42
+  C:091AH         LINE#         43
+  -------         ENDPROC       MAIN
+  -------         PROC          GET_KEYPAD_KEY
+  -------         DO            
+  D:0007H         SYMBOL        key_val
+  -------         ENDDO         
+  C:0800H         LINE#         47
+  C:0800H         LINE#         48
+  C:0800H         LINE#         49
+  C:0802H         LINE#         50
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  03/13/2024  19:25:32  PAGE 3
+
+
+  C:0805H         LINE#         51
+  C:080AH         LINE#         52
+  C:080AH         LINE#         53
+  C:080CH         LINE#         54
+  C:0814H         LINE#         55
+  C:0814H         LINE#         56
+  C:0819H         LINE#         57
+  C:0819H         LINE#         58
+  C:081BH         LINE#         59
+  C:0823H         LINE#         60
+  C:0823H         LINE#         61
+  C:0828H         LINE#         62
+  C:0828H         LINE#         63
+  C:082AH         LINE#         64
+  C:0832H         LINE#         65
+  C:0832H         LINE#         68
+  C:0835H         LINE#         69
+  C:083AH         LINE#         70
+  C:083AH         LINE#         71
+  C:083CH         LINE#         72
+  C:0844H         LINE#         73
+  C:0844H         LINE#         74
+  C:0849H         LINE#         75
+  C:0849H         LINE#         76
+  C:084BH         LINE#         77
+  C:0853H         LINE#         78
+  C:0853H         LINE#         79
+  C:0858H         LINE#         80
+  C:0858H         LINE#         81
+  C:085AH         LINE#         82
+  C:0862H         LINE#         83
+  C:0862H         LINE#         86
+  C:0865H         LINE#         87
+  C:086AH         LINE#         88
+  C:086AH         LINE#         89
+  C:086CH         LINE#         90
+  C:0874H         LINE#         91
+  C:0874H         LINE#         92
+  C:0879H         LINE#         93
+  C:0879H         LINE#         94
+  C:087BH         LINE#         95
+  C:0883H         LINE#         96
+  C:0883H         LINE#         97
+  C:0888H         LINE#         98
+  C:0888H         LINE#         99
+  C:088AH         LINE#         100
+  C:0892H         LINE#         101
+  C:0892H         LINE#         104
+  C:0895H         LINE#         105
+  C:089AH         LINE#         106
+  C:089AH         LINE#         107
+  C:089CH         LINE#         108
+  C:08A4H         LINE#         109
+  C:08A4H         LINE#         110
+  C:08A9H         LINE#         111
+  C:08A9H         LINE#         112
+  C:08ABH         LINE#         113
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  03/13/2024  19:25:32  PAGE 4
+
+
+  C:08B3H         LINE#         114
+  C:08B3H         LINE#         115
+  C:08B8H         LINE#         116
+  C:08B8H         LINE#         117
+  C:08BAH         LINE#         118
+  C:08C2H         LINE#         119
+  C:08C2H         LINE#         120
+  C:08C2H         LINE#         121
+  -------         ENDPROC       GET_KEYPAD_KEY
+  -------         PROC          _LCD_STR
+  D:0008H         SYMBOL        str
+  -------         DO            
+  D:000BH         SYMBOL        loop
+  -------         ENDDO         
+  C:091CH         LINE#         126
+  C:0922H         LINE#         127
+  C:0922H         LINE#         128
+  C:0927H         LINE#         129
+  C:093DH         LINE#         130
+  C:093DH         LINE#         131
+  C:0940H         LINE#         132
+  C:094AH         LINE#         133
+  -------         ENDPROC       _LCD_STR
+  -------         PROC          _LCD_DATA
+  D:0007H         SYMBOL        ch
+  C:09AAH         LINE#         134
+  C:09AAH         LINE#         135
+  C:09AAH         LINE#         136
+  C:09ACH         LINE#         137
+  C:09AEH         LINE#         138
+  C:09AEH         LINE#         139
+  C:09B1H         LINE#         140
+  C:09B3H         LINE#         141
+  -------         ENDPROC       _LCD_DATA
+  -------         PROC          _LCD_CMD
+  D:0007H         SYMBOL        ch
+  C:09B4H         LINE#         144
+  C:09B4H         LINE#         145
+  C:09B4H         LINE#         146
+  C:09B6H         LINE#         147
+  C:09B8H         LINE#         148
+  C:09B8H         LINE#         149
+  C:09BBH         LINE#         150
+  C:09BDH         LINE#         151
+  -------         ENDPROC       _LCD_CMD
+  -------         PROC          L?0048
+  -------         ENDPROC       L?0048
+  -------         PROC          _DELY
+  D:0006H         SYMBOL        dly
+  -------         DO            
+  D:0004H         SYMBOL        loop
+  D:0002H         SYMBOL        delay_gen
+  -------         ENDDO         
+  C:097EH         LINE#         152
+  C:097EH         LINE#         153
+  C:097EH         LINE#         154
+  C:0981H         LINE#         155
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  03/13/2024  19:25:32  PAGE 5
+
+
+  C:0981H         LINE#         156
+  C:0988H         LINE#         157
+  C:099DH         LINE#         158
+  -------         ENDPROC       _DELY
+  -------         ENDMOD        PRAC7
+
+  -------         MODULE        ?C?CLDOPTR
+  C:094BH         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_STR?PRAC7
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0185H BYTE (18%) *
+******************************************************************************
+
+Program Size: data=17.0 xdata=0 code=449
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)
